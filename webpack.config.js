@@ -1,5 +1,6 @@
 /* eslint no-var:0, import/no-extraneous-dependencies: 0 */
 var webpack = require('webpack');
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -38,6 +39,21 @@ module.exports = {
         warnings: false,
       },
     }),
+    new UglifyJsPlugin({
+      test: /\.js($|\?)/i,
+      sourceMap: true,
+      uglifyOptions: {
+        mangle: {
+          keep_fnames: true,
+        },
+        compress: {
+          warnings: false,
+        },
+        output: {
+          beautify: false,
+        },
+      },
+    })
   ],
   node: {
     fs: 'empty',
