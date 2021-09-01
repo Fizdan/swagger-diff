@@ -27,6 +27,8 @@ export default function swaggerDiff(oldSpec, newSpec, config) {
   const debug = require('debug')('swagger-diff:workflow');
   debug('start');
 
+  console.log(config)
+
   config = getConfig(config);
   return Promise.all([
     prepareSpec(oldSpec),
